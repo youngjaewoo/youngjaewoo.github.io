@@ -1,3 +1,5 @@
-Add static files here. Files in this directory will be copied directly to `dist` folder during build. For example, /static/robots.txt will be located at https://yoursite.com/robots.txt.
+# youngjaewoo.github.io
 
-This file should be deleted.
+This is the repository for my personal website: [youngjaewoo.github.io](youngjaewoo.github.io)
+
+Based on source code by [Elizabeth DuPre](https://github.com/emdupre/emdupre.github.io) and [Gridsome Blog Starter](https://github.com/gridsome/gridsome-starter-blog).
