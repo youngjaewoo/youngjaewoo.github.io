@@ -13,15 +13,18 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Computational Biologist's not-so random blog
+title: Not-so-random
+subtitle: Computational Biologist's blog
+name: "Young Jae Woo"
 email:
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-twitter_username: username
+url: "http://youngjaewoo.github.io" # youngjaewoo.com
+twitter_username: youngjaewoot
 github_username: youngjaewoo
-minimal_mistakes_skin: default
+minimal_mistakes_skin: "default" # "default", "air", "aqua"
 search: true
 
 # Build settings
@@ -58,22 +61,25 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "First Lastname"
-  avatar : "/assets/images/bio-photo.jpg"
+  name   : "Youngjae Woo"
+  avatar : "/assets/images/IMG_2772_v2.jpg" # IMG_3393-2
   bio    : "My awesome biography constrained to a sentence or two goes here."
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://"
+      url: "https://youngjaewoo.com"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+      url: "https://github.com/youngjaewoo"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
+    - label: "Linkedin"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/young-jae-woo-4227427/"
 
 footer:
   links:
@@ -99,6 +105,7 @@ defaults:
       comments: true
       share: true
       related: true
+      show_date: true
   # _pages
   - scope:
       path: "_pages"
