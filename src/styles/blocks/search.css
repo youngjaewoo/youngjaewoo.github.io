@@ -43,6 +43,26 @@
 	}
 }
 
+.search-trigger {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2.25rem;
+	min-height: 2.25rem;
+}
+
+.search-trigger > span {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
 dialog.pf-modal::backdrop {
 	backdrop-filter: blur(8px);
 }
