@@ -1,0 +1,12 @@
+---
+import { menuLinks, siteConfig } from "../site.config";
+---
+<header class="site-header">
+  <a class="site-title" href="/" aria-label={`${siteConfig.title} home`}>
+    {siteConfig.title}
+  </a>
+  <nav aria-label="Main navigation">
+    {menuLinks.map((link) => <a href={link.path}>{link.title}</a>)}
+    <button type="button" data-theme-toggle aria-label="Toggle color theme">◐</button>
+  </nav>
+</header>

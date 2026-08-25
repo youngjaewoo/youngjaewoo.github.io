@@ -1,0 +1,35 @@
+---
+import { siteConfig } from "../site.config";
+import Header from "../components/Header.astro";
+---
+<html lang={siteConfig.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={siteConfig.description} />
+    <title>{Astro.props.title ? `${Astro.props.title} · ` : ""}{siteConfig.title}</title>
+    <link rel="icon" href="/assets/images/mylogo.jpg" />
+    <script is:inline>
+      const savedTheme = localStorage.getItem("theme");
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = savedTheme || systemTheme;
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main"><slot /></main>
+    <footer class="site-footer">
+      <span>© {new Date().getFullYear()} {siteConfig.author}</span>
+      <a href="https://github.com/youngjaewoo">GitHub</a>
+    </footer>
+    <script>
+      const toggle = document.querySelector("[data-theme-toggle]");
+      toggle?.addEventListener("click", () => {
+        const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = nextTheme;
+        localStorage.setItem("theme", nextTheme);
+      });
+    </script>
+  </body>
+</html>

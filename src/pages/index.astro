@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import PostPreview from "../components/PostPreview.astro";
+
+const posts = (await getCollection("post"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 10);
+---
+<Base title="Home">
+  <section class="intro">
+    <h1>Hello, I'm Youngjae.</h1>
+    <p>I work with biomedical data to understand human biology and discover better paths from research to the clinic.</p>
+    <p>This is my corner of the internet for notes on computational biology, genetics, and drug discovery.</p>
+  </section>
+  <section class="post-section" aria-labelledby="post-heading">
+    <h2 class="section-title" id="post-heading"><a href="/posts/">Posts</a></h2>
+    {posts.length > 0 ? <ul class="post-list">{posts.map((post) => <li><PostPreview post={post} /></li>)}</ul> : <p class="muted">No posts yet. Add a Markdown file to <code>content/posts/</code> to get started.</p>}
+  </section>
+</Base>
