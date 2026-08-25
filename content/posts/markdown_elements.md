@@ -1,8 +1,8 @@
 ---
 title: "A post of Markdown elements"
 description: "This post is for testing and listing a number of different markdown elements"
-publishDate: "25 Aug 2026"
-updatedDate: 25 Aug 2026
+publishDate: "22 Feb 2023"
+updatedDate: 22 Jan 2024
 tags: ["test", "markdown"]
 pinned: true
 ---
@@ -165,9 +165,9 @@ function demo() {
 
 ## Images
 
-Image in the same folder: `src/content/post/markdown-elements/logo.png`
+Image from the site's existing assets:
 
-![Astro theme cactus logo](./logo.png)
+![Youngjae Woo logo](/assets/images/mylogo.jpg)
 
 ## Links
 
