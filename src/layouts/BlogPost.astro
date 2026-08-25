@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+import TableOfContents from "../components/blog/TOC.astro";
+import { getReadingTime } from "../utils/readingTime";
+import { getFormattedDate } from "../utils/date";
+import Base from "./Base.astro";
+
+const { post } = Astro.props as { post: CollectionEntry<"post"> };
+const { Content, headings } = await render(post);
+const publishDate = getFormattedDate(post.data.publishDate);
+const updatedDate = post.data.updatedDate && getFormattedDate(post.data.updatedDate);
+const readingTime = getReadingTime(post.body ?? "");
+---
+<Base title={post.data.title}>
+  <article class="post-page">
+    <header class="post-header">
+      <h1>{post.data.title}</h1>
+      <p class="post-meta">
+        <time datetime={post.data.publishDate.toISOString()}>{publishDate}</time>
+        <span aria-hidden="true"> / </span>
+        <span>{readingTime}</span>
+        {updatedDate && <><span aria-hidden="true"> </span><span>Updated: {updatedDate}</span></>}
+      </p>
+      {post.data.tags.length > 0 && <p class="post-tags">{post.data.tags.map((tag) => <a href={`/tags/${encodeURIComponent(tag)}/`}>#{tag}</a>)}</p>}
+    </header>
+    <div class="post-body">
+      <TableOfContents headings={headings} />
+      <div class="prose"><Content /></div>
+    </div>
+  </article>
+</Base>

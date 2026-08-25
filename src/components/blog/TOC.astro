@@ -1,0 +1,14 @@
+---
+import type { MarkdownHeading } from "astro";
+import { generateToc } from "../../utils/generateToc";
+import TOCHeading from "./TOCHeading.astro";
+
+const toc = generateToc(Astro.props.headings as MarkdownHeading[]);
+---
+
+{toc.length > 0 && <details open class="table-of-contents">
+  <summary>Table of Contents</summary>
+  <nav aria-label="Table of Contents">
+    <ol>{toc.map((heading) => <TOCHeading heading={heading} />)}</ol>
+  </nav>
+</details>}

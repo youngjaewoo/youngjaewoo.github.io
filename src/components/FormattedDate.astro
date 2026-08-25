@@ -1,0 +1,6 @@
+---
+import { getFormattedDate } from "../utils/date";
+
+const { date, ...attrs } = Astro.props as { date: Date } & Record<string, unknown>;
+---
+<time datetime={date.toISOString()} {...attrs}>{getFormattedDate(date)}</time>

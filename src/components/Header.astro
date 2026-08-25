@@ -1,6 +1,7 @@
 ---
 import { menuLinks, siteConfig } from "../site.config";
 import { siteUrl } from "../utils/urls";
+import Search from "./Search.astro";
 ---
 <header class="site-header">
   <a class="site-title" href={siteUrl()} aria-label={`${siteConfig.title} home`}>
@@ -10,4 +11,5 @@ import { siteUrl } from "../utils/urls";
     {menuLinks.map((link) => <a href={siteUrl(link.path)}>{link.title}</a>)}
     <button type="button" data-theme-toggle aria-label="Toggle color theme">◐</button>
   </nav>
+  <Search />
 </header>

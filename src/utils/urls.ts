@@ -1,5 +1,6 @@
 export const siteBase = import.meta.env.BASE_URL;
 
 export function siteUrl(path = "") {
-  return `${siteBase}${path}`.replace(/\/\/+/g, "/");
+  const cleanPath = path.replace(/^\/+/, "");
+  return `${siteBase}${cleanPath}`;
 }

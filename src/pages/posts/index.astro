@@ -2,16 +2,33 @@
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import PostPreview from "../../components/PostPreview.astro";
+import { siteUrl } from "../../utils/urls";
+import { collectionDateSort } from "../../utils/date";
 
 const posts = (await getCollection("post"))
   .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+  .sort(collectionDateSort);
+const tagCounts = new Map<string, number>();
+for (const post of posts) {
+  for (const tag of post.data.tags) tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+}
+const tags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 7);
 ---
-<Base title="Blog">
+<Base title="Posts">
   <header class="page-header">
     <p class="eyebrow">Archive</p>
     <h1>Posts</h1>
     <p class="muted">Notes on computational biology, genetics, and drug discovery.</p>
   </header>
-  {posts.length > 0 ? <ul class="post-list">{posts.map((post) => <li><PostPreview post={post} /></li>)}</ul> : <p class="muted">No posts yet.</p>}
+  <div class="posts-layout">
+    <div>
+      {posts.length > 0 ? <ul class="post-list">{posts.map((post) => <li><PostPreview post={post} /></li>)}</ul> : <p class="muted">No posts yet.</p>}
+    </div>
+    {tags.length > 0 && <aside class="posts-tags" aria-labelledby="tags-heading">
+      <h2 id="tags-heading">Tags</h2>
+      <ul>
+        {tags.map(([tag, count]) => <li><a href={siteUrl(`tags/${encodeURIComponent(tag)}/`)}>#{tag}</a><span>{count}</span></li>)}
+      </ul>
+    </aside>}
+  </div>
 </Base>

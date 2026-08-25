@@ -3,10 +3,11 @@ import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import PostPreview from "../components/PostPreview.astro";
 import { siteUrl } from "../utils/urls";
+import { collectionDateSort } from "../utils/date";
 
 const posts = (await getCollection("post"))
   .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .sort(collectionDateSort)
   .slice(0, 10);
 ---
 <Base title="Home">

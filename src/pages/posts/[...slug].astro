@@ -1,7 +1,6 @@
 ---
-import { getCollection, render } from "astro:content";
-import Base from "../../layouts/Base.astro";
-import TableOfContents from "../../components/TableOfContents.astro";
+import { getCollection } from "astro:content";
+import BlogPost from "../../layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("post");
@@ -12,18 +11,5 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content, headings } = await render(post);
 ---
-<Base title={post.data.title}>
-  <article class="post-page">
-    <header class="post-header">
-      <p class="eyebrow">{post.data.publishDate.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
-      <h1>{post.data.title}</h1>
-      <p class="muted">{post.data.description}</p>
-    </header>
-    <div class="post-body">
-      <TableOfContents headings={headings} />
-      <div class="prose"><Content /></div>
-    </div>
-  </article>
-</Base>
+<BlogPost post={post} />
