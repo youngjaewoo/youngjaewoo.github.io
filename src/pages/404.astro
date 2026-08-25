@@ -1,11 +1,13 @@
 ---
-import Base from "../layouts/Base.astro";
-import { siteUrl } from "../utils/urls";
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description: "Oops! It looks like this page is lost in space!",
+	title: "Oops! You found a missing page!",
+};
 ---
-<Base title="Page not found">
-  <article class="prose">
-    <h1>Page not found</h1>
-    <p>The page you were looking for does not exist.</p>
-    <p><a href={siteUrl()}>Return home →</a></p>
-  </article>
-</Base>
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-12">404 | Oops something went wrong</h1>
+	<p class="mb-8">Please use the navigation to find your way back</p>
+</PageLayout>

@@ -1,11 +1,11 @@
-export function toggleClass(element: HTMLElement, className: string): void {
-  element.classList.toggle(className);
+export function toggleClass(element: HTMLElement, className: string) {
+	element.classList.toggle(className);
 }
 
-export function elementHasClass(element: HTMLElement, className: string): boolean {
-  return element.classList.contains(className);
+export function elementHasClass(element: HTMLElement, className: string) {
+	return element.classList.contains(className);
 }
 
-export function rootInDarkMode(): boolean {
-  return document.documentElement.getAttribute("data-theme") === "dark";
+export function rootInDarkMode() {
+	return document.documentElement.getAttribute("data-theme") === "dark";
 }

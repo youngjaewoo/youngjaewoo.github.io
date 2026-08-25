@@ -1,19 +1,64 @@
 /* Archived homepage styling from the first Jekyll redesign. */
 :root {
-  --ink: #1e2422;
-  --muted: #69716c;
-  --paper: #f4f2ed;
-  --line: #d8d9d1;
-  --accent: #d8653f;
-  --serif: Georgia, "Times New Roman", serif;
-  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	--ink: #1e2422;
+	--muted: #69716c;
+	--paper: #f4f2ed;
+	--line: #d8d9d1;
+	--accent: #d8653f;
+	--serif: Georgia, "Times New Roman", serif;
+	--sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-html { background: var(--paper); }
-body { background: var(--paper); color: var(--ink); font-family: var(--sans); }
-.home-shell { margin: 0 auto; max-width: 1240px; padding: 7vh 5vw 12vh; }
-.intro { align-items: end; display: grid; gap: 8vw; grid-template-columns: minmax(0, 1fr) minmax(260px, 390px); min-height: 68vh; }
-.intro h1 { font-size: clamp(4.6rem, 11vw, 9.5rem); font-weight: 500; letter-spacing: -.06em; line-height: .82; }
-.intro h1 em { color: var(--accent); font-family: var(--serif); font-weight: 400; }
-.intro-portrait img { display: block; filter: saturate(.78); height: auto; width: 100%; }
-.focus, .now { border-top: 1px solid var(--line); display: grid; gap: 8vw; grid-template-columns: minmax(150px, 1fr) 3fr; padding: 70px 0; }
-@media (max-width: 700px) { .intro { display: block; } .focus, .now { display: block; } }
+html {
+	background: var(--paper);
+}
+body {
+	background: var(--paper);
+	color: var(--ink);
+	font-family: var(--sans);
+}
+.home-shell {
+	margin: 0 auto;
+	max-width: 1240px;
+	padding: 7vh 5vw 12vh;
+}
+.intro {
+	align-items: end;
+	display: grid;
+	gap: 8vw;
+	grid-template-columns: minmax(0, 1fr) minmax(260px, 390px);
+	min-height: 68vh;
+}
+.intro h1 {
+	font-size: clamp(4.6rem, 11vw, 9.5rem);
+	font-weight: 500;
+	letter-spacing: -0.06em;
+	line-height: 0.82;
+}
+.intro h1 em {
+	color: var(--accent);
+	font-family: var(--serif);
+	font-weight: 400;
+}
+.intro-portrait img {
+	display: block;
+	filter: saturate(0.78);
+	height: auto;
+	width: 100%;
+}
+.focus,
+.now {
+	border-top: 1px solid var(--line);
+	display: grid;
+	gap: 8vw;
+	grid-template-columns: minmax(150px, 1fr) 3fr;
+	padding: 70px 0;
+}
+@media (max-width: 700px) {
+	.intro {
+		display: block;
+	}
+	.focus,
+	.now {
+		display: block;
+	}
+}

@@ -1,22 +1,39 @@
 ---
-import { getCollection } from "astro:content";
-import Base from "../layouts/Base.astro";
-import PostPreview from "../components/PostPreview.astro";
-import { siteUrl } from "../utils/urls";
-import { collectionDateSort } from "../utils/date";
+import { type CollectionEntry, getCollection } from "astro:content";
+import PostPreview from "@/components/blog/PostPreview.astro";
+import Note from "@/components/note/Note.astro";
+import SocialList from "@/components/SocialList.astro";
+import { getAllPosts } from "@/data/post";
+import PageLayout from "@/layouts/Base.astro";
+import { collectionDateSort } from "@/utils/date";
 
-const posts = (await getCollection("post"))
-  .filter((post) => !post.data.draft)
-  .sort(collectionDateSort)
-  .slice(0, 10);
+const MAX_POSTS = 10;
+const allPosts = await getAllPosts();
+const allPostsByDate = allPosts.sort(collectionDateSort) as CollectionEntry<"post">[];
+const latestPosts = allPostsByDate.slice(0, MAX_POSTS);
+const latestNotes = (await getCollection("note"))
+	.sort(collectionDateSort)
+	.slice(0, 5) as CollectionEntry<"note">[];
 ---
-<Base title="Home">
-  <section class="intro">
-    <h1>Code, Causality, and Discovery</h1>
-    <p>Beyond my core research in human genetics, I actively enjoy exploring the latest machine learning methodologies with fellow bio-pharma professionals. I help lead local knowledge-exchange groups—such as the KASBP-SD community—where we discuss recent AI literature, share computational tools, and evaluate their real-world utility. This website serves as a digital extension of those conversations. Here, you can expect a wide range of content: from technical deep dives into frontier deep learning architectures to accessible, straightforward guides on applying AI tools to everyday biological research.</p>
+
+<PageLayout meta={{ title: "Home" }}>
+  <section>
+    <h1 class="title mb-12">Code, Causality, and Discovery</h1>
+    <p class="mb-4">
+      Beyond my core research in human genetics, I actively enjoy exploring the latest machine learning methodologies with fellow bio-pharma professionals. I help lead local knowledge-exchange groups—such as the KASBP-SD community—where we discuss recent AI literature, share computational tools, and evaluate their real-world utility. This website serves as a digital extension of those conversations. Here, you can expect a wide range of content: from technical deep dives into frontier deep learning architectures to accessible, straightforward guides on applying AI tools to everyday biological research
+    </p>
+    <SocialList />
   </section>
-  <section class="post-section" aria-labelledby="post-heading">
-    <h2 class="section-title" id="post-heading"><a href={siteUrl("posts/")}>Posts</a></h2>
-    {posts.length > 0 ? <ul class="post-list">{posts.map((post) => <li><PostPreview post={post} /></li>)}</ul> : <p class="muted">No posts yet. Add a Markdown file to <code>content/posts/</code> to get started.</p>}
+  <section class="mt-16">
+    <h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Posts</a></h2>
+    <ul class="space-y-4" role="list">
+      {latestPosts.map((post) => <li class="grid gap-1 sm:grid-cols-[auto_1fr]"><PostPreview post={post} /></li>)}
+    </ul>
   </section>
-</Base>
+  {latestNotes.length > 0 && <section class="mt-16">
+    <h2 class="title text-accent mb-6 text-xl"><a href="/notes/">Notes</a></h2>
+    <ul class="space-y-6" role="list">
+      {latestNotes.map((note) => <li><Note note={note} as="h3" isPreview /></li>)}
+    </ul>
+  </section>}
+</PageLayout>
