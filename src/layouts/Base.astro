@@ -1,6 +1,7 @@
 ---
 import { siteConfig } from "../site.config";
 import Header from "../components/Header.astro";
+import { siteUrl } from "../utils/urls";
 import "../styles/global.css";
 ---
 <html lang={siteConfig.lang}>
@@ -9,7 +10,7 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={siteConfig.description} />
     <title>{Astro.props.title ? `${Astro.props.title} · ` : ""}{siteConfig.title}</title>
-    <link rel="icon" href="/assets/images/mylogo.jpg" />
+    <link rel="icon" href={siteUrl("assets/images/mylogo.jpg")} />
     <script is:inline>
       const savedTheme = localStorage.getItem("theme");
       const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";

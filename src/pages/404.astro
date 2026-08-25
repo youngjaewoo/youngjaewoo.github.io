@@ -1,10 +1,11 @@
 ---
 import Base from "../layouts/Base.astro";
+import { siteUrl } from "../utils/urls";
 ---
 <Base title="Page not found">
   <article class="prose">
     <h1>Page not found</h1>
     <p>The page you were looking for does not exist.</p>
-    <p><a href="/">Return home →</a></p>
+    <p><a href={siteUrl()}>Return home →</a></p>
   </article>
 </Base>
