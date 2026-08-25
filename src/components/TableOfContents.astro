@@ -1,0 +1,37 @@
+---
+import type { MarkdownHeading } from "astro";
+import TocItem from "./TocItem.astro";
+
+interface TocItem extends MarkdownHeading {
+  children: TocItem[];
+}
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+function addHeading(items: TocItem[], heading: TocItem) {
+  const last = items.at(-1);
+  if (!last || last.depth >= heading.depth) {
+    items.push(heading);
+    return;
+  }
+  addHeading(last.children, heading);
+}
+
+const headings = Astro.props.headings.filter((heading) => heading.depth >= 2 && heading.depth <= 4);
+const toc: TocItem[] = [];
+for (const heading of headings) addHeading(toc, { ...heading, children: [] });
+---
+
+{toc.length > 0 && (
+  <details class="table-of-contents" open>
+    <summary>Table of Contents</summary>
+    <nav aria-label="Table of Contents">
+      <ol>
+        {toc.map((heading) => <TocItem item={heading} />)}
+      </ol>
+    </nav>
+  </details>
+)}
+

@@ -167,7 +167,7 @@ function demo() {
 
 Image from the site's existing assets:
 
-![Youngjae Woo logo](/assets/images/mylogo.jpg)
+![sample img](/assets/images/bio-photo.jpg)
 
 ## Links
 

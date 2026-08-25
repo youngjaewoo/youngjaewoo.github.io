@@ -1,0 +1,18 @@
+---
+interface TocItem {
+  depth: number;
+  slug: string;
+  text: string;
+  children: TocItem[];
+}
+
+const { item } = Astro.props as { item: TocItem };
+---
+<li class:list={item.depth > 2 ? "toc-subitem" : ""}>
+  <a href={`#${item.slug}`}><span aria-hidden="true">#</span>{item.text}</a>
+  {item.children.length > 0 && (
+    <ol>
+      {item.children.map((child) => <Astro.self item={child} />)}
+    </ol>
+  )}
+</li>
